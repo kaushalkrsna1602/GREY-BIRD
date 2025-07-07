@@ -20,6 +20,11 @@ app.get("/", (req , res) => console.log("Hello from server"))
 app.use("/api/user" , userRoutes);
 app.use("/api/posts", postRoutes);
 
+// error handling middleware
+app.use((err, req, res, next) => {
+  console.error("Unhandled error:", err);
+  res.status(500).json({ error: err.message || "Internal server error" });
+});
 
 const startServer = async () => {
   try {
