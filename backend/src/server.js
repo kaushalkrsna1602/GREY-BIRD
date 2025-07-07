@@ -3,6 +3,7 @@ import cors from "cors";
 import {clerkMiddleWare} from "@clerk/express"
 
 import userRoutes from "./routes/user.route.js"
+import postRoutes from "./routes/post.route.js"
 
 import { ENV } from "./config/env.js";
 import { connectDB } from "./config/db.js";
@@ -16,7 +17,8 @@ app.use(clerkMiddleWare());
 
 app.get("/", (req , res) => console.log("Hello from server"))
 
-app.use("/api/user" , userRoutes)
+app.use("/api/user" , userRoutes);
+app.use("/api/posts", postRoutes);
 
 
 const startServer = async () => {
